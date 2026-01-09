@@ -1,0 +1,40 @@
+name: nataly
+interpreter: python
+description: "Generate natal chart calculations and summary reports"
+entry: run.py
+usage: "--person \"Ad Soyad\" --birth \"YYYY-MM-DD HH:MM\" --tz \"+02:00\" --lat 41.0 --lon 29.0 [--house-system Placidus] [--ephe-path ./ephe] [--format text|json|both]"
+args:
+  - name: person
+    type: string
+    description: "Full name of the person"
+    required: true
+  - name: birth
+    type: string
+    description: "Birth date and time (YYYY-MM-DD HH:MM)"
+    required: true
+  - name: tz
+    type: string
+    description: "Timezone offset (e.g. +02:00)"
+    required: true
+  - name: lat
+    type: string
+    description: "Latitude"
+    required: true
+  - name: lon
+    type: string
+    description: "Longitude"
+    required: true
+  - name: house-system
+    type: string
+    description: "House system (default: Placidus)"
+    required: true
+  - name: ephe-path
+    type: string
+    description: "Path to ephemeris files (optional)"
+    required: true
+  - name: format
+    type: string
+    description: "Output format (text, json, both)"
+    required: true
+
+  
