@@ -2,7 +2,7 @@ name: nataly
 interpreter: python
 description: "Generate natal chart calculations and summary reports"
 entry: run.py
-usage: "--person \"Ad Soyad\" --birth \"YYYY-MM-DD HH:MM\" --tz \"+02:00\" --lat 41.0 --lon 29.0 [--house-system Placidus] [--ephe-path ./ephe] [--format text|json|both]"
+usage: "--person \"Name Surname\" --birth \"YYYY-MM-DD HH:MM\" --tz \"+02:00\" --lat 41.0 --lon 29.0 [--house-system Placidus] [--ephe-path ./ephe] [--format text|json|both]"
 args:
   - name: person
     type: string
