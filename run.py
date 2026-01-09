@@ -267,9 +267,30 @@ def _to_jsonable(summary: ChartSummaryOut) -> Dict[str, Any]:
     return raw
 
 
+def _fix_negative_tz_arg(argv: List[str]) -> List[str]:
+    """
+    Argparse treats arguments starting with '-' as flags, causing --tz "-08:00" to fail.
+    This helper merges known args like --tz with their negative values using '='.
+    """
+    new_argv = []
+    i = 0
+    while i < len(argv):
+        curr = argv[i]
+        if curr == "--tz" and i + 1 < len(argv):
+            val = argv[i+1]
+            if val.startswith("-"):
+                new_argv.append(f"{curr}={val}")
+                i += 2
+                continue
+        new_argv.append(curr)
+        i += 1
+    return new_argv
+
+
 def main(argv: List[str]) -> int:
     try:
-        inp = _parse_args(argv)
+        fixed_argv = _fix_negative_tz_arg(argv)
+        inp = _parse_args(fixed_argv)
         chart, dt_utc_iso = _build_chart(inp)
         summary = _to_summary(chart, inp, dt_utc_iso)
 
